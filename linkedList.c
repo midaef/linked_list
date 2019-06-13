@@ -10,6 +10,7 @@ typedef struct list
 
 void create_linked_list(int arr[3]);
 void push_linked_list(int arr);
+void print_linked_list(list* head);
 
 void create_linked_list(int arr[3]) {
 	for (int i = 0; i < 3; ++i)
@@ -19,32 +20,30 @@ void create_linked_list(int arr[3]) {
 }
 
 void push_linked_list(int arr) {
-	list* temp = (list*)malloc(sizeof(int));
-	list* head = NULL;
-	list* p = NULL;
+	list* head = (list*)malloc(sizeof(int));
 	for (int i = 0; i < 3; ++i)
 	{
-		temp->data = arr;
-		temp->next = NULL;
+		head->data = arr;
+		head->next = NULL;
 		if (head == NULL) {
-			head = temp;
-		} else {
-			p = head;
-			while (p->next != NULL) {
-				p = p->next;
-				p->next = temp;
-			}
-		}	
+			printf("%s\n", "Errore");
+		}
 	}
-	list * current = temp;
-    while (current != NULL) {
-        printf("%d->", current->data);
-        current = current->next;
-    }
+	print_linked_list(head);
+}
+
+void print_linked_list(list* head) {
+	while (head != NULL) {
+		printf("%d->", head->data);
+		head = head->next;
+	}
 }
 
 int main(int argc, char const *argv[]) {
 	int arr[3] = {10, 20, 30}; 
 	create_linked_list(arr);
+	push_linked_list(40);
+	push_linked_list(50);
+	push_linked_list(60);
 	return 0;
 }
